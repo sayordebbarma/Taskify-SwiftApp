@@ -13,6 +13,7 @@ class ToDoListViewController: UITableViewController {
     //["Do coding", "watch anime", "DO more works"]
     
     let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,9 @@ class ToDoListViewController: UITableViewController {
         
         
         // to retrive data
-//        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
-//            ItemsArray = items
-//        }
+        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
+            ItemsArray = items
+        }
         
     }
     //MARK: - TableView DataSource Methods
@@ -91,7 +92,15 @@ class ToDoListViewController: UITableViewController {
             self.ItemsArray.append(newItem)
             
             //to prevent memory lost after app terminate
-            self.defaults.set(self.ItemsArray, forKey: "ToDoListArray")
+            //self.defaults.set(self.ItemsArray, forKey: "ToDoListArray")
+            let encoder = PropertyListEncoder()
+            
+            do {
+                let data = try encoder.encode(self.ItemsArray)
+                try data.write(to: self.dataFilePath!)
+            } catch {
+                print("Error encoding the task: \(error)")
+            }
             
             self.tableView.reloadData() // to show append item in the tableView
         }

@@ -71,8 +71,7 @@ class ToDoListViewController: UITableViewController {
         
         ItemsArray[indexPath.row].done = !ItemsArray[indexPath.row].done
         
-        
-        tableView.reloadData()
+        saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -91,18 +90,7 @@ class ToDoListViewController: UITableViewController {
             
             self.ItemsArray.append(newItem)
             
-            //to prevent memory lost after app terminate
-            //self.defaults.set(self.ItemsArray, forKey: "ToDoListArray")
-            let encoder = PropertyListEncoder()
-            
-            do {
-                let data = try encoder.encode(self.ItemsArray)
-                try data.write(to: self.dataFilePath!)
-            } catch {
-                print("Error encoding the task: \(error)")
-            }
-            
-            self.tableView.reloadData() // to show append item in the tableView
+            self.saveItems()
         }
         
         alert.addTextField { (addTextField) in
@@ -112,6 +100,23 @@ class ToDoListViewController: UITableViewController {
         alert.addAction(action)
         
         present(alert, animated: true)
+    }
+    
+    //MARK: - model manupulation methods
+    
+    func saveItems() {
+        //to prevent memory lost after app terminate
+        //self.defaults.set(self.ItemsArray, forKey: "ToDoListArray")
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(ItemsArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding the task: \(error)")
+        }
+        
+        self.tableView.reloadData() // to show append item in the tableView
     }
 }
 

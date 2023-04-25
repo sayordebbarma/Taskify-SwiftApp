@@ -32,6 +32,7 @@ class ToDoListViewController: UITableViewController {
         newItem2.title = "Do laundry"
         ItemsArray.append(newItem2)
         
+        loadItems()
         
         // to retrive data
         if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
@@ -117,6 +118,17 @@ class ToDoListViewController: UITableViewController {
         }
         
         self.tableView.reloadData() // to show append item in the tableView
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                ItemsArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding the data: \(error)")
+            }
+        }
     }
 }
 

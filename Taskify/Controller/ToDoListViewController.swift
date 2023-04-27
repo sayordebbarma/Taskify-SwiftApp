@@ -6,38 +6,19 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoListViewController: UITableViewController {
     
-    var ItemsArray = [Item]()
-    //["Do coding", "watch anime", "DO more works"]
-    
-    let defaults = UserDefaults.standard
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    var ItemsArray = [Items]()
+    // to get access to our AppDelegate as an object -> (UIApplication.shared.delegate as! AppDelegate)
+    let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
-        let newItem = Item()
-        newItem.title = "Do coding"
-        ItemsArray.append(newItem)
-        
-        let newItem1 = Item()
-        newItem1.title = "Watch anime"
-        ItemsArray.append(newItem1)
-        
-        let newItem2 = Item()
-        newItem2.title = "Do laundry"
-        ItemsArray.append(newItem2)
-        
-        loadItems()
-        
-        // to retrive data
-        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
-            ItemsArray = items
-        }
+        //loadItems()
         
     }
     //MARK: - TableView DataSource Methods
@@ -86,9 +67,10 @@ class ToDoListViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen if we click the add button
-            let newItem = Item()
+                        
+            let newItem = Items(context: self.context)
             newItem.title = textField.text!
-            
+            newItem.done = false
             self.ItemsArray.append(newItem)
             
             self.saveItems()
@@ -107,28 +89,24 @@ class ToDoListViewController: UITableViewController {
     
     func saveItems() {
         //to prevent memory lost after app terminate
-        //self.defaults.set(self.ItemsArray, forKey: "ToDoListArray")
-        let encoder = PropertyListEncoder()
-        
         do {
-            let data = try encoder.encode(ItemsArray)
-            try data.write(to: dataFilePath!)
+            try context.save()
         } catch {
-            print("Error encoding the task: \(error)")
+            print("Error saving the context: \(error)")
         }
         
         self.tableView.reloadData() // to show append item in the tableView
     }
     
-    func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                ItemsArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error decoding the data: \(error)")
-            }
-        }
-    }
+//    func loadItems() {
+//        if let data = try? Data(contentsOf: dataFilePath!) {
+//            let decoder = PropertyListDecoder()
+//            do {
+//                ItemsArray = try decoder.decode([Items].self, from: data)
+//            } catch {
+//                print("Error decoding the data: \(error)")
+//            }
+//        }
+//    }
 }
 

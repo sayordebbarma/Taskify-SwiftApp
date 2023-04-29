@@ -18,7 +18,7 @@ class ToDoListViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //loadItems()
+        loadItems()
         
     }
     //MARK: - TableView DataSource Methods
@@ -50,6 +50,8 @@ class ToDoListViewController: UITableViewController {
 //        } else {
 //            ItemsArray[indexPath.row].done = false
 //        }
+        
+//      ItemsArray[indexPath.row].setValue("Completed", forKey: "title")
         
         ItemsArray[indexPath.row].done = !ItemsArray[indexPath.row].done
         
@@ -98,15 +100,13 @@ class ToDoListViewController: UITableViewController {
         self.tableView.reloadData() // to show append item in the tableView
     }
     
-//    func loadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                ItemsArray = try decoder.decode([Items].self, from: data)
-//            } catch {
-//                print("Error decoding the data: \(error)")
-//            }
-//        }
-//    }
+    func loadItems() {
+        let request : NSFetchRequest<Items> = Items.fetchRequest()
+        do {
+            ItemsArray = try context.fetch(request)
+        } catch {
+            print("Error loading: \(error)")
+        }
+    }
 }
 

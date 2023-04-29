@@ -45,13 +45,8 @@ class ToDoListViewController: UITableViewController {
     //MARK: - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if ItemsArray[indexPath.row].done == false {
-//            ItemsArray[indexPath.row].done = true
-//        } else {
-//            ItemsArray[indexPath.row].done = false
-//        }
-        
-//      ItemsArray[indexPath.row].setValue("Completed", forKey: "title")
+//        context.delete(ItemsArray[indexPath.row])
+//        ItemsArray.remove(at: indexPath.row)
         
         ItemsArray[indexPath.row].done = !ItemsArray[indexPath.row].done
         
@@ -100,8 +95,8 @@ class ToDoListViewController: UITableViewController {
         self.tableView.reloadData() // to show append item in the tableView
     }
     
-    func loadItems() {
-        let request : NSFetchRequest<Items> = Items.fetchRequest()
+    func loadItems(with request: NSFetchRequest<Items> = Items.fetchRequest()) {
+//        let request : NSFetchRequest<Items> = Items.fetchRequest()
         do {
             ItemsArray = try context.fetch(request)
         } catch {
@@ -110,3 +105,17 @@ class ToDoListViewController: UITableViewController {
     }
 }
 
+//MARK: - searchBarDelegate extension
+extension ToDoListViewController : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Items> = Items.fetchRequest()
+
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(with: request)
+        
+        tableView.reloadData()
+    }
+}

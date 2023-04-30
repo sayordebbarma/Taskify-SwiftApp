@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281155C429FEC44400FA141C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281155C329FEC44400FA141C /* CategoryViewController.swift */; };
 		286BEAD429FABD2E00F7458D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 286BEAD229FABD2E00F7458D /* DataModel.xcdatamodeld */; };
 		286E91C029EF11A6003FA49D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E91BF29EF11A6003FA49D /* AppDelegate.swift */; };
 		286E91C229EF11A6003FA49D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E91C129EF11A6003FA49D /* SceneDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		281155C329FEC44400FA141C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		286BEAD329FABD2E00F7458D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		286E91BC29EF11A6003FA49D /* Taskify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286E91BF29EF11A6003FA49D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		287BD37B29F4216100F19CB7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				281155C329FEC44400FA141C /* CategoryViewController.swift */,
 				286E91C329EF11A6003FA49D /* ToDoListViewController.swift */,
 			);
 			path = Controller;
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				281155C429FEC44400FA141C /* CategoryViewController.swift in Sources */,
 				286BEAD429FABD2E00F7458D /* DataModel.xcdatamodeld in Sources */,
 				286E91C429EF11A6003FA49D /* ToDoListViewController.swift in Sources */,
 				286E91C029EF11A6003FA49D /* AppDelegate.swift in Sources */,

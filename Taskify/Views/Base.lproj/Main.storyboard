@@ -8,6 +8,45 @@
     </dependencies>
     <scenes>
         <!--Taskify-->
+        <scene sceneID="mvt-dI-GJ1">
+            <objects>
+                <tableViewController id="ACS-Qt-Y4D" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="d80-ch-s4d">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="BBf-UG-wjJ">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BBf-UG-wjJ" id="olL-se-hli">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ACS-Qt-Y4D" id="z8J-VI-0DD"/>
+                            <outlet property="delegate" destination="ACS-Qt-Y4D" id="dBC-hD-T2t"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Taskify" id="ebX-ev-ykg">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9VP-d5-a4s">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="IL8-ku-pK0" id="Pbz-Hj-hEx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="isb-F4-E8k" kind="show" identifier="goToItems" id="4kt-PT-L9y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fxj-bl-MqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="IL8-ku-pK0" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="581" y="-76"/>
+        </scene>
+        <!--Items-->
         <scene sceneID="7pa-rt-K2I">
             <objects>
                 <tableViewController id="isb-F4-E8k" customClass="ToDoListViewController" customModule="Taskify" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +77,7 @@
                             <outlet property="delegate" destination="isb-F4-E8k" id="eHN-kf-uyQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Taskify" id="m37-aX-hD1">
+                    <navigationItem key="navigationItem" title="Items" id="m37-aX-hD1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sqO-qb-5yd">
                             <connections>
                                 <action selector="addButtonPressed:" destination="isb-F4-E8k" id="wZy-pK-AxM"/>
@@ -48,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCz-9X-i2P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718.32061068702285" y="-76.056338028169023"/>
+            <point key="canvasLocation" x="1372" y="-76"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pE5-Sq-GXI">
@@ -61,7 +100,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="isb-F4-E8k" kind="relationship" relationship="rootViewController" id="zmE-hi-5rX"/>
+                        <segue destination="ACS-Qt-Y4D" kind="relationship" relationship="rootViewController" id="xtW-xy-mz6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhM-X1-QmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

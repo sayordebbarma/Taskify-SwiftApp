@@ -10,7 +10,7 @@
         <!--Taskify-->
         <scene sceneID="mvt-dI-GJ1">
             <objects>
-                <tableViewController id="ACS-Qt-Y4D" sceneMemberID="viewController">
+                <tableViewController id="ACS-Qt-Y4D" customClass="CategoryViewController" customModule="Taskify" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="d80-ch-s4d">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,9 +31,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Taskify" id="ebX-ev-ykg">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9VP-d5-a4s">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9VP-d5-a4s">
                             <connections>
-                                <action selector="addButtonPressed:" destination="IL8-ku-pK0" id="Pbz-Hj-hEx"/>
+                                <action selector="addButtonPressed:" destination="ACS-Qt-Y4D" id="urI-pV-LJm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -42,7 +42,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fxj-bl-MqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="IL8-ku-pK0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="581" y="-76"/>
         </scene>
